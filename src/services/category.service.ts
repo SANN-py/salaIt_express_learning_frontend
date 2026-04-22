@@ -1,0 +1,77 @@
+import { json } from "zod";
+import type { categorySchema } from "../components/form/CategoryForm";
+import { api } from "./lib/axios";
+
+// const BASE_URI = "http://localhost:3000/api/v1";
+
+export interface CategoryPayload {
+  name: string;
+}
+
+const getCategories = async (search?: string, page = 1, limit = 10) => {
+  return await api.get(`api/v1/categories`, {
+    params: { search, page, limit },
+  });
+  // console.log("res", res);
+  // return res;
+
+  // const res = await fetch(`${BASE_URI}/categories?search=${search}`);
+  // const data = await res.json();
+  // console.log("data", data);
+
+  // return data;
+};
+
+const getCategoryList = async () => {
+  return await api.get(`api/v1/categories/list`);
+
+  // const res = await fetch(`${BASE_URI}/categories/list`);
+  // const data = await res.json();
+  // console.log("data", data);
+
+  // return data;
+};
+
+const createCategory = async (request: CategoryPayload) => {
+  return await api.post(`api/v1/categories`, request);
+
+  // const res = await fetch(`${BASE_URI}/categories`, {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(request),
+  // });
+
+  // const data = await res.json();
+  // return data;
+};
+const updateCategory = async (id: number, request: CategoryPayload) => {
+  return await api.put(`api/v1/categories/${id}`, request);
+
+  // const res = await fetch(`${BASE_URI}/categories/${id}`, {
+  //   method: "PUT",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(request),
+  // });
+
+  // const data = await res.json();
+  // return data;
+};
+const deleteCategory = async (id?: number) => {
+  return await api.delete(`api/v1/categories/${id}`);
+
+  // const res = await fetch(`${BASE_URI}/categories/${id}`, {
+  //   method: "DELETE",
+  //   headers: { "Content-Type": "application/json" },
+  // });
+
+  // const data = await res.json();
+  // return data;
+};
+
+export {
+  getCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  getCategoryList,
+};
