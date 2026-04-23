@@ -9,5 +9,5 @@ export interface orderPayload {
 }
 export const createOrder = async (request: orderPayload) => {
   const res = await api.post("/api/v1/orders/create", request);
-  return res.data;
+  return res;
 };

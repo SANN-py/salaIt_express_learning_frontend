@@ -18,7 +18,7 @@ const authLogin = async (request?: LogInPayload) => {
   // });
   // const data = await res.json();
   // return data;
-  return res.data;
+  return res;
 };
 
 export { authLogin };

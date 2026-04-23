@@ -18,7 +18,7 @@ const getCategories = async (search?: string, page = 1, limit = 10) => {
   // console.log("data", data);
 
   // return data;
-  return res.data;
+  return res;
 };
 
 const getCategoryList = async () => {
@@ -29,7 +29,7 @@ const getCategoryList = async () => {
   // console.log("data", data);
 
   // return data;
-  return res.data;
+  return res;
 };
 
 const createCategory = async (request: CategoryPayload) => {
@@ -44,7 +44,7 @@ const createCategory = async (request: CategoryPayload) => {
   // const data = await res.json();
   // return data;
 
-  return res.data;
+  return res;
 };
 const updateCategory = async (id: number, request: CategoryPayload) => {
   return await api.put(`api/v1/categories/${id}`, request);
@@ -68,7 +68,7 @@ const deleteCategory = async (id?: number) => {
 
   // const data = await res.json();
   // return data;
-  return res.data;
+  return res;
 };
 
 export {

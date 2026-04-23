@@ -50,7 +50,7 @@ const getProduct = async (
   // console.log("data", data);
 
   // return data;
-  return res.data;
+  return res;
 };
 
 const uploadProductImage = async (id: number, file: File) => {
@@ -72,12 +72,12 @@ const uploadProductImage = async (id: number, file: File) => {
   // const data = await res.json();
   // return data;
 
-  return res.data;
+  return res;
 };
 
 const deleteProductImage = async (id?: number) => {
   const res = await api.delete(`/api/v1/products/images/${id}`);
-  return res.data;
+  return res;
 };
 
 export {

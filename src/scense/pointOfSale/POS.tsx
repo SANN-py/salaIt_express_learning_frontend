@@ -149,6 +149,7 @@ export default function POS() {
   console.log("productData", productData);
 
   const products = (productData?.data as IProduct[]) ?? [];
+  console.log("PRODUCT DATA:", productData);
   const categories = (categoryData?.data as ICategory[]) ?? [];
   const allCategories = [
     { id: undefined, name: "all", icon: "⭐" },
