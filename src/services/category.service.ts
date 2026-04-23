@@ -22,17 +22,18 @@ const getCategories = async (search?: string, page = 1, limit = 10) => {
 };
 
 const getCategoryList = async () => {
-  return await api.get(`api/v1/categories/list`);
+  const res = await api.get(`api/v1/categories/list`);
 
   // const res = await fetch(`${BASE_URI}/categories/list`);
   // const data = await res.json();
   // console.log("data", data);
 
   // return data;
+  return res.data;
 };
 
 const createCategory = async (request: CategoryPayload) => {
-  return await api.post(`api/v1/categories`, request);
+  const res = await api.post(`api/v1/categories`, request);
 
   // const res = await fetch(`${BASE_URI}/categories`, {
   //   method: "POST",
@@ -42,6 +43,8 @@ const createCategory = async (request: CategoryPayload) => {
 
   // const data = await res.json();
   // return data;
+
+  return res.data;
 };
 const updateCategory = async (id: number, request: CategoryPayload) => {
   return await api.put(`api/v1/categories/${id}`, request);
@@ -56,7 +59,7 @@ const updateCategory = async (id: number, request: CategoryPayload) => {
   // return data;
 };
 const deleteCategory = async (id?: number) => {
-  return await api.delete(`api/v1/categories/${id}`);
+  const res = await api.delete(`api/v1/categories/${id}`);
 
   // const res = await fetch(`${BASE_URI}/categories/${id}`, {
   //   method: "DELETE",
@@ -65,6 +68,7 @@ const deleteCategory = async (id?: number) => {
 
   // const data = await res.json();
   // return data;
+  return res.data;
 };
 
 export {

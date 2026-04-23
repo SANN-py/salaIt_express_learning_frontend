@@ -1,7 +1,9 @@
 import { api } from "./lib/axios";
 export const createPayment = async (orderId: number) => {
-  return await api.post(`/api/v1/payments/${orderId}`);
+  const res = await api.post(`/api/v1/payments/${orderId}`);
+  return res.data;
 };
 export const checkTransaction = async (tranId: string) => {
-  return await api.post(`/api/v1/payments/${tranId}/check`);
+  const res = await api.post(`/api/v1/payments/${tranId}/check`);
+  return res.data;
 };
