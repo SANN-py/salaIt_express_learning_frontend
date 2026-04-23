@@ -1,20 +1,19 @@
 import { DataTable } from "../../components/global/data-table";
 import { columns } from "../../components/table/products/columns";
 import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { SpinnerCustom } from "../../components/ui/spinner";
-import { getProduct } from "../../services/product.service";
+
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { ProductForm } from "../../components/form/ProductForm";
 import { CirclePlus } from "lucide-react";
-import { createCategory } from "../../services/category.service";
+
 import type { IProduct } from "../../types/product";
 
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -32,7 +31,6 @@ import { useDeleteProduct, useProducts } from "../hooks/useProduct";
 import { Field, FieldLabel } from "../../components/ui/field";
 import { getAccessToken } from "../login/TokenStorage";
 import { useNavigate } from "react-router-dom";
-import FileUpload01 from "../../components/file-upload-01";
 
 // const BASE_URI = "http://localhost:3000/api/v1";
 function Product() {
@@ -168,6 +166,7 @@ function Product() {
             {/* Previous */}
             <PaginationItem>
               <PaginationPrevious
+                size="sm"
                 href="#"
                 onClick={() => {
                   if (pagination?.prePage) setPage(pagination.prePage);
@@ -179,6 +178,7 @@ function Product() {
             {pages.map((p) => (
               <PaginationItem key={p}>
                 <PaginationLink
+                  size="sm"
                   href="#"
                   isActive={p === pagination?.currentPage}
                   onClick={() => setPage(p)}
@@ -191,7 +191,8 @@ function Product() {
             {/* Next */}
             <PaginationItem>
               <PaginationNext
-                href="#"
+                size="sm"
+                href=""
                 onClick={() => {
                   if (pagination?.nextPage) setPage(pagination.nextPage);
                 }}

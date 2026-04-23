@@ -1,12 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import z from "zod";
-import {
-  Field,
-  FieldContent,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "../ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import {
@@ -28,17 +22,15 @@ import {
 import { useCategoryList } from "../../scense/hooks/useCategoryQuery";
 import {
   useCreateProduct,
-  useDeleteProduct,
   useDeleteProductImage,
   useUpdateProduct,
   useUploadProductImage,
 } from "../../scense/hooks/useProduct";
-import { ImagePlus, Trash2, Upload } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { ImagePlus, Trash2 } from "lucide-react";
+import { useRef, useState } from "react";
 import { SpinnerCustom } from "../ui/spinner";
-import { toast } from "sonner";
+
 import type { IProduct, IProductImage } from "../../types/product";
-import { cn } from "../../lib/utils";
 
 const productSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -68,16 +60,14 @@ export const ProductForm = ({
   // mutate
   const { mutate: createProductMutate } = useCreateProduct();
   const { mutate: updateProductMutate } = useUpdateProduct();
-  const { mutate: deleteProductMutate } = useDeleteProduct();
+  // const { mutate: deleteProductMutate } = useDeleteProduct();
   const { mutate: uploadProductImageMutate } = useUploadProductImage();
   const { mutate: deleteProductImageMutate } = useDeleteProductImage();
 
   // --- File upload state ---
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [fileProgresses, setFileProgresses] = useState<Record<string, number>>(
-    {},
-  );
+  const [fileProgresses] = useState<Record<string, number>>({});
 
   const handleFileSelect = (files: FileList | null) => {
     if (!files) return;
@@ -306,7 +296,7 @@ export const ProductForm = ({
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent position="item-aligned">
-                              {data?.data?.map((cat, i) => (
+                              {data?.data?.map((cat: any, i: any) => (
                                 <SelectItem key={i} value={String(cat.id)}>
                                   {cat.name}
                                 </SelectItem>
@@ -477,7 +467,7 @@ export const ProductForm = ({
                             {/* Info + progress */}
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between items-center mb-1">
-                                <span className="text-xs font-medium truncate max-w-[200px]">
+                                <span className="text-xs font-medium truncate max-w-50">
                                   {file.name}
                                 </span>
                                 <span className="text-xs text-muted-foreground ml-2 shrink-0">

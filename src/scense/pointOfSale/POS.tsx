@@ -6,19 +6,10 @@ import { Button } from "../../components/ui/button";
 import { Separator } from "../../components/ui/separator";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import {
-  Search,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Plus,
   Trash2,
-  Settings,
-  History,
-  FileText,
-  Star,
-  Building2,
-  Warehouse,
-  CreditCard,
   QrCode,
   Minus,
   Trash2Icon,
@@ -29,7 +20,6 @@ import { useCategories } from "../hooks/useCategoryQuery";
 import type { ICategory } from "../../types/category";
 import { toast } from "sonner";
 import type { ICart } from "../../types/cart";
-import SharedDialog from "../../components/shared/Dialog";
 import Dialog from "../../components/shared/Dialog";
 import { useCreateOrder } from "../hooks/userOrder";
 import type { orderPayload } from "../../services/order.service";
@@ -55,77 +45,77 @@ import {
 } from "../../components/ui/select";
 import { useSearchParams } from "react-router-dom";
 
-interface MenuItem {
-  id: string;
-  name: string;
-  category: string;
-  price: number;
-  image: string;
-  description?: string;
-}
+// interface MenuItem {
+//   id: string;
+//   name: string;
+//   category: string;
+//   price: number;
+//   image: string;
+//   description?: string;
+// }
 
-interface OrderItem extends MenuItem {
-  qty: number;
-}
+// interface OrderItem extends MenuItem {
+//   qty: number;
+// }
 
-const menuItems: MenuItem[] = [
-  {
-    id: "1",
-    name: "Duck Salad",
-    category: "Pizza",
-    price: 35.0,
-    image: "/product.png",
-  },
-  {
-    id: "2",
-    name: "Breakfast board",
-    category: "Taco",
-    price: 14.0,
-    image: "/product.png",
-  },
-  {
-    id: "3",
-    name: "Hummus",
-    category: "Sandwich",
-    price: 24.0,
-    image: "/product.png",
-  },
-  {
-    id: "4",
-    name: "Roast beef",
-    category: "Kebab",
-    price: 17.5,
-    image: "/product.png",
-  },
-  {
-    id: "5",
-    name: "Tuna salad",
-    category: "Popcorn",
-    price: 35.0,
-    image: "/product.png",
-  },
-  {
-    id: "6",
-    name: "Salmon",
-    category: "Burger",
-    price: 48.0,
-    image: "/product.png",
-  },
-  {
-    id: "7",
-    name: "California roll",
-    category: "Taco",
-    price: 74.0,
-    image: "/product.png",
-  },
-  {
-    id: "8",
-    name: "Sashimi",
-    category: "Burrito",
-    price: 74.0,
-    image: "/product.png",
-  },
-];
+// const menuItems: MenuItem[] = [
+//   {
+//     id: "1",
+//     name: "Duck Salad",
+//     category: "Pizza",
+//     price: 35.0,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "2",
+//     name: "Breakfast board",
+//     category: "Taco",
+//     price: 14.0,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "3",
+//     name: "Hummus",
+//     category: "Sandwich",
+//     price: 24.0,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "4",
+//     name: "Roast beef",
+//     category: "Kebab",
+//     price: 17.5,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "5",
+//     name: "Tuna salad",
+//     category: "Popcorn",
+//     price: 35.0,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "6",
+//     name: "Salmon",
+//     category: "Burger",
+//     price: 48.0,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "7",
+//     name: "California roll",
+//     category: "Taco",
+//     price: 74.0,
+//     image: "/product.png",
+//   },
+//   {
+//     id: "8",
+//     name: "Sashimi",
+//     category: "Burrito",
+//     price: 74.0,
+//     image: "/product.png",
+//   },
+// ];
 
 export default function POS() {
   // state
@@ -134,7 +124,7 @@ export default function POS() {
   );
   const [orderItems, setOrderItems] = useState<ICart[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [draftNumber, setDraftNumber] = useState(1);
+  const [draftNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [searchText, setSearchText] = useState<string>("");
@@ -392,6 +382,7 @@ export default function POS() {
                   {/* Previous */}
                   <PaginationItem>
                     <PaginationPrevious
+                      size="sm"
                       href="#"
                       onClick={() => {
                         if (pagination?.prePage) setPage(pagination.prePage);
@@ -403,6 +394,7 @@ export default function POS() {
                   {pages.map((p) => (
                     <PaginationItem key={p}>
                       <PaginationLink
+                        size="sm"
                         href="#"
                         isActive={p === pagination?.currentPage}
                         onClick={() => setPage(p)}
@@ -415,6 +407,7 @@ export default function POS() {
                   {/* Next */}
                   <PaginationItem>
                     <PaginationNext
+                      size="sm"
                       href="#"
                       onClick={() => {
                         if (pagination?.nextPage) setPage(pagination.nextPage);

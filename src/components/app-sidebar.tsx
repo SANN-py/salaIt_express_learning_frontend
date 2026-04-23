@@ -3,10 +3,8 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  Blocks,
   BlocksIcon,
   BookOpen,
-  Bot,
   Command,
   Frame,
   GalleryVerticalEnd,

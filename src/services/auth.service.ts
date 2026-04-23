@@ -5,7 +5,7 @@ export interface LogInPayload {
   password: string;
 }
 
-const BASE_URI = "http://localhost:3000/api/v1";
+// const BASE_URI = "http://localhost:3000/api/v1";
 const authLogin = async (request?: LogInPayload) => {
   return await api.post(`/api/v1/auth/login`, request);
 

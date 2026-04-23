@@ -39,7 +39,7 @@ const getProduct = async (
   limit: number = 10,
   categoryId?: number,
 ) => {
-  return await api.get(`/api/v1/products`, {
+  const res = await api.get(`/api/v1/products`, {
     params: { search, page, limit, categoryId },
   });
 
@@ -50,6 +50,7 @@ const getProduct = async (
   // console.log("data", data);
 
   // return data;
+  return res.data;
 };
 
 const uploadProductImage = async (id: number, file: File) => {

@@ -5,16 +5,8 @@ interface props {
   price: number;
 }
 
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
-} from "./ui/card";
-import { Button, buttonVariants } from "./ui/button";
+import { Card, CardFooter, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
 
 const ViewCard = ({ name, des, image, price }: props) => {
   return (

@@ -1,5 +1,3 @@
-import { json } from "zod";
-import type { categorySchema } from "../components/form/CategoryForm";
 import { api } from "./lib/axios";
 
 // const BASE_URI = "http://localhost:3000/api/v1";
@@ -9,7 +7,7 @@ export interface CategoryPayload {
 }
 
 const getCategories = async (search?: string, page = 1, limit = 10) => {
-  return await api.get(`api/v1/categories`, {
+  const res = await api.get(`api/v1/categories`, {
     params: { search, page, limit },
   });
   // console.log("res", res);
@@ -20,6 +18,7 @@ const getCategories = async (search?: string, page = 1, limit = 10) => {
   // console.log("data", data);
 
   // return data;
+  return res.data;
 };
 
 const getCategoryList = async () => {

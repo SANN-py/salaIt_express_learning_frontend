@@ -7,7 +7,7 @@ import {
   updateProduct,
   uploadProductImage,
 } from "../../services/product.service";
-import { createCategory } from "../../services/category.service";
+
 import { toast } from "sonner";
 
 export const useProducts = (

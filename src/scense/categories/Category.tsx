@@ -14,7 +14,6 @@ import { useDebounce } from "use-debounce";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -28,13 +27,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
-import { useNavigate } from "react-router-dom";
+
 import { Field, FieldLabel } from "../../components/ui/field";
 import { SpinnerCustom } from "../../components/ui/spinner";
 
 function Category() {
   const { mutate: deleteCategoryMutate } = useDeleteCategory();
-  const navigate = useNavigate();
 
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -128,6 +126,7 @@ function Category() {
               {/* Previous */}
               <PaginationItem>
                 <PaginationPrevious
+                  size="sm"
                   href="#"
                   onClick={() => {
                     if (pagination?.prePage) setPage(pagination.prePage);
@@ -139,6 +138,7 @@ function Category() {
               {pages.map((p) => (
                 <PaginationItem key={p}>
                   <PaginationLink
+                    size="sm"
                     href="#"
                     isActive={p === pagination?.currentPage}
                     onClick={() => setPage(p)}
@@ -151,6 +151,7 @@ function Category() {
               {/* Next */}
               <PaginationItem>
                 <PaginationNext
+                  size="sm"
                   href="#"
                   onClick={() => {
                     if (pagination?.nextPage) setPage(pagination.nextPage);

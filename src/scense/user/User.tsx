@@ -1,5 +1,3 @@
-import React from "react";
-
 import { columns } from "../../components/table/users/columns";
 import { DataTable } from "../../components/global/data-table";
 
