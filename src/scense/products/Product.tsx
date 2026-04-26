@@ -7,7 +7,7 @@ import { SpinnerCustom } from "../../components/ui/spinner";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { ProductForm } from "../../components/form/ProductForm";
-import { CirclePlus } from "lucide-react";
+import { ChevronLeft, ChevronRight, CirclePlus } from "lucide-react";
 
 import type { IProduct } from "../../types/product";
 
@@ -31,6 +31,8 @@ import { useDeleteProduct, useProducts } from "../hooks/useProduct";
 import { Field, FieldLabel } from "../../components/ui/field";
 import { getAccessToken } from "../login/TokenStorage";
 import { useNavigate } from "react-router-dom";
+import type { ICategory } from "../../types/category";
+import { useCategories } from "../hooks/useCategoryQuery";
 
 // const BASE_URI = "http://localhost:3000/api/v1";
 function Product() {
@@ -74,12 +76,21 @@ function Product() {
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
+  const [selectedCategory, setSelectedCategory] = useState<number | undefined>(
+    undefined,
+  );
   const [selectedProduct, setSelectedProduct] = useState<IProduct | undefined>(
     undefined,
   );
   const [formKey, setFormKey] = useState(0);
   const { mutate: deleteProductMutate } = useDeleteProduct();
-  const { data: productsData, isLoading } = useProducts(search, page, limit);
+  const { data: categoryData } = useCategories();
+  const { data: productsData, isLoading } = useProducts(
+    search,
+    page,
+    limit,
+    selectedCategory,
+  );
 
   const navigate = useNavigate();
 
@@ -93,6 +104,11 @@ function Product() {
     );
   }
   const products = productsData?.data ?? [];
+  const categories = (categoryData?.data as ICategory[]) ?? [];
+  const allCategories = [
+    { id: undefined, name: "all", icon: "⭐" },
+    ...categories,
+  ];
   const handleSearch = () => {
     console.log("search input", searchInput);
     setSearch(searchInput);
@@ -154,6 +170,26 @@ function Product() {
         <Button onClick={() => handleSearch()} className="cursor-pointer">
           Search
         </Button>
+      </div>
+
+      {/* Categories */}
+      <div className="border-b p-4">
+        <div className="flex gap-4 overflow-x-auto">
+          {allCategories.map((category, index) => (
+            <div
+              key={index}
+              className="hover:bg-muted flex min-w-20 cursor-pointer flex-col items-center rounded-lg p-2"
+              onClick={() => setSelectedCategory(category.id)}
+            >
+              <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-2xl">
+                {category.icon}
+              </div>
+              <span className="text-muted-foreground text-center text-xs">
+                {category.name}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* data table from shadcnui */}
